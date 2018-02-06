@@ -19,6 +19,7 @@ class Flags:
     json = False
     id = None
     update = False
+    list = False
     type = None
     file = None
     price = 0
@@ -64,33 +65,35 @@ class MyArgs:
                           help="Configuration file (JSON). Default is approval_config.json", metavar="CONFIG")
         if 'f' in opttoset:
             parser.add_option("-f", "--file", dest="file", default=None,
-                              help="Advertiser or creative file (JSON) to use", metavar="JSON")
+                              help="File (JSON) to use.", metavar="JSON")
         if 'o' in opttoset:
             parser.add_option("-o", "--force", dest="force", action="store_true", default=False,
-                              help="Force processing regardless of status. Used by gettoken")
+                              help="Force processing.")
         if 'e' in opttoset:
             parser.add_option("-e", "--disable", dest="disable", default=None,
-                              help="Disable the sending of ads. Used by changeconfig. Must be true or false",
+                              help="Disable. Must be true or false",
                               metavar="TRUE/FALSE")
         if 'm' in opttoset:
             parser.add_option("-m", "--minutes", dest="minutes", default=None, type=int,
-                              help="Cache internval in minutes. Used by createconfig and update config.",
+                              help="Minutes.",
                               metavar="MINUTES")
         if 'u' in opttoset:
             parser.add_option("-u", "--update", dest="update", action="store_true", default=False,
                               help="Update records. Default is no updates.")
+        if 'l' in opttoset:
+            parser.add_option("-l", "--list", dest="list", action="store_true", default=False,
+                              help="List all build properties")
         if 'i' in opttoset:
             parser.add_option("-i", "--id", dest="id", default=None,
-                              help="Id to use. Specific ID depends on program",
+                              help="Build Property Id to use.",
                               metavar="ID")
         if 'y' in opttoset:
             parser.add_option("-y", "--type", dest="type", default=None,
-                              help="Type of API to call. Must be either advertiser or creative. "
-                                   "Required by judge and query.",
+                              help="Type.",
                               metavar="TYPE")
         if 'p' in opttoset:
             parser.add_option("-p", "--price", dest="price", default=0,
-                              help="Price to use for bid. Required for sseasubmit and updateprice",
+                              help="Price.",
                               metavar="PRICE")
         if 's' in opttoset:
             parser.add_option("-s", "--start", dest="start", default=None,
@@ -119,6 +122,8 @@ class MyArgs:
             Flags.price = options.price
         if 'u' in opttoset:
             Flags.update = options.update
+        if 'l' in opttoset:
+            Flags.list = options.list
         if 'f' in opttoset:
             Flags.file = options.file
         if 'e' in opttoset:
