@@ -54,7 +54,7 @@ def main():
             if arg.Flags.id in data['props']:
                 print("{} {} [MIUI {}] {} is {}".format(data['model'], data['region'], data['version'], arg.Flags.id, data['props'][arg.Flags.id]))
             else:
-                print("{} {} [MIUI {}] {} missing for this model".format(data['model'], data['region'], data['version'], arg.Flags.id))
+                print("MISSING: {} {} [MIUI {}] {} missing for this model".format(data['model'], data['region'], data['version'], arg.Flags.id))
 
 
 def extractgroup(match):
